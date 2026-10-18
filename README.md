@@ -9,9 +9,9 @@ invisibles ou spectateurs ne bloquent plus la nuit. Document développeur, à te
 
 ## Fonctionnement (`SleepService`)
 
-- **Comptés** dans un monde : les joueurs au lit (toujours, même immobiles : un joueur couché ne bouge pas), et les
-  autres s'ils ne sont pas AFK (`EterLib/config.yml > activity.afk-minutes`, 5 par défaut). Jamais : les invisibles, les
-  spectateurs, `etersleep.ignore`.
+- **Comptés** dans un monde : les joueurs au lit (toujours, même immobiles ou avec `etersleep.ignore` : le staff a souvent
+  `*` dans LuckPerms), et les autres s'ils ne sont pas AFK (`EterLib/config.yml > activity.afk-minutes`, 5 par défaut) ni
+  `etersleep.ignore`. Jamais : les invisibles (ni comptés ni annoncés), les spectateurs.
 - **Nécessaires** : `percentage` % des comptés (arrondi au-dessus), au moins 1. Ex : 50 % et 3 joueurs actifs → 2 au lit.
 - **Affichage** : à chaque coucher, « X est au lit (2/3) » dans le monde ; tant que quelqu'un est au lit, la barre d'action
   « ☾ 2/3 au lit pour passer la nuit » (toutes les demi-secondes).
@@ -33,4 +33,4 @@ invisibles ou spectateurs ne bloquent plus la nuit. Document développeur, à te
 
 | Permission | Par défaut | Effet |
 |---|---|---|
-| `etersleep.ignore` | personne | Jamais compté (staff, comptes de test) |
+| `etersleep.ignore` | personne | Éveillé, ne bloque jamais la nuit ; au lit, compte comme les autres (staff, comptes de test) |

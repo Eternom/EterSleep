@@ -16,8 +16,8 @@ import java.util.Set;
 
 /**
  * La nuit passe quand assez de joueurs sont au lit : percentage % des joueurs comptés du monde. Comptés : les joueurs
- * au lit (toujours, même immobiles), et les autres s'ils ne sont pas AFK (activité d'EterLib) ; jamais les invisibles,
- * les spectateurs ni etersleep.ignore. La nuit défile alors en quelques secondes (skip-speed ticks par tick), puis la
+ * au lit (toujours, même immobiles ou avec etersleep.ignore), et les autres s'ils ne sont pas AFK (activité d'EterLib)
+ * ni etersleep.ignore ; jamais les invisibles ni les spectateurs. La nuit défile alors en quelques secondes (skip-speed ticks par tick), puis la
  * pluie s'arrête. La règle de Minecraft (playersSleepingPercentage) est mise à 101 dans les mondes gérés : c'est
  * EterSleep qui décide. Thread principal.
  */
@@ -77,14 +77,14 @@ public class SleepService {
         int sleeping = 0;
         int counted = 0;
         for (Player player : world.getPlayers()) {
-            if (player.getGameMode() == GameMode.SPECTATOR || player.isSleepingIgnored()
-                    || player.hasPermission(IGNORE_PERMISSION) || vanish.isVanished(player.getUniqueId())) {
+            if (player.getGameMode() == GameMode.SPECTATOR || vanish.isVanished(player.getUniqueId())) {
                 continue;
             }
+            // Au lit : compte toujours, même avec etersleep.ignore (le staff a souvent * dans LuckPerms)
             if (player.isSleeping()) {
                 sleeping++;
                 counted++;
-            } else if (!activity.isAfk(player)) {
+            } else if (!player.isSleepingIgnored() && !player.hasPermission(IGNORE_PERMISSION) && !activity.isAfk(player)) {
                 counted++;
             }
         }
@@ -95,7 +95,9 @@ public class SleepService {
     /** Un joueur vient de se coucher (un tick après) : prévient le monde. */
     public void entered(Player player) {
         World world = player.getWorld();
-        if (!manages(world) || !player.isSleeping() || skipping.contains(world.getName())) {
+        // Un invisible au lit ne compte pas : l'annoncer le trahirait
+        if (!manages(world) || !player.isSleeping() || skipping.contains(world.getName())
+                || vanish.isVanished(player.getUniqueId())) {
             return;
         }
         Count count = count(world);

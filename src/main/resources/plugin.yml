@@ -10,5 +10,5 @@ depend: [EterLib]
 
 permissions:
   etersleep.ignore:
-    description: Jamais compté pour passer la nuit (staff, comptes de test).
+    description: Éveillé, ne bloque jamais la nuit ; au lit, compte comme les autres (staff, comptes de test).
     default: false
