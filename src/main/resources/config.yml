@@ -1,0 +1,18 @@
+# ============================================================
+#  EterSleep : passer la nuit
+# ============================================================
+#
+#  Langue et couleurs se règlent dans EterLib/config.yml, communes à tous les plugins Eter. Un joueur est AFK après
+#  EterLib/config.yml > activity.afk-minutes sans marcher, tourner la tête, agir ni parler.
+#  Toute modification nécessite un redémarrage du serveur.
+
+# Part des joueurs comptés qui doivent être au lit pour passer la nuit (1 à 100). Comptés : les joueurs au lit, et les
+# autres s'ils ne sont pas AFK ; jamais les invisibles, les spectateurs ni ceux qui ont etersleep.ignore.
+# 50 avec 3 joueurs actifs : 2 au lit. Au moins un joueur au lit dans tous les cas.
+percentage: 50
+
+# Vitesse à laquelle la nuit défile une fois assez de joueurs au lit (ticks de jeu par tick) : 100 = environ 5 s.
+skip-speed: 100
+
+# Mondes gérés (noms). Vide : tous les mondes normaux (le Nether et l'End n'ont pas de nuit).
+worlds: []

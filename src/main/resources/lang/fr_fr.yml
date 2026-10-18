@@ -1,0 +1,9 @@
+# Messages d'EterSleep, format MiniMessage : https://docs.advntr.dev/minimessage/format
+# Balises de la palette (EterLib/config.yml > language.colors) : <primary> <accent> <info> <error> <success>
+# Les valeurs entre <> comme <player> sont remplies par le plugin. Une clé absente reprend le texte intégré au plugin.
+
+sleep:
+  entered: "<accent><player></accent> <info>est au lit <dark_gray>(<sleeping>/<needed>, les joueurs AFK ne comptent pas)"
+  waiting: "<info>☾ <accent><sleeping>/<needed></accent> au lit pour passer la nuit"
+  skipping: "<success>☾ Bonne nuit... la nuit passe."
+  morning: "<success>Le jour se lève !"

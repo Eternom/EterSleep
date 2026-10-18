@@ -1,0 +1,14 @@
+name: EterSleep
+version: '${version}'
+
+main: fr.eternom.eterSleep.Main
+api-version: '26.2'
+load: POSTWORLD
+authors: [ NadTum ]
+description: Passer la nuit sans attendre tout le monde (les joueurs AFK et invisibles ne comptent pas).
+depend: [EterLib]
+
+permissions:
+  etersleep.ignore:
+    description: Jamais compté pour passer la nuit (staff, comptes de test).
+    default: false

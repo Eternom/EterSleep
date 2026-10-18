@@ -1,0 +1,8 @@
+# EterSleep messages, MiniMessage format: https://docs.advntr.dev/minimessage/format
+# Palette tags (EterLib/config.yml > language.colors): <primary> <accent> <info> <error> <success>
+
+sleep:
+  entered: "<accent><player></accent> <info>is in bed <dark_gray>(<sleeping>/<needed>, AFK players don't count)"
+  waiting: "<info>☾ <accent><sleeping>/<needed></accent> in bed to skip the night"
+  skipping: "<success>☾ Good night... the night is passing."
+  morning: "<success>The sun is rising!"
