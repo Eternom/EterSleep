@@ -14,6 +14,8 @@ public final class Main extends JavaPlugin {
     /** Activité des joueurs (AFK) depuis 1.18.0. */
     private static final String REQUIRED_ETERLIB = "1.18.0";
 
+    private SleepService sleep;
+
     @Override
     public void onEnable() {
         // En premier : vérifie la version d'EterLib (un EterLib < 1.3.0 n'a pas requireVersion, d'où le catch)
@@ -30,10 +32,17 @@ public final class Main extends JavaPlugin {
 
         EterLib lib = EterLib.get();
         Messages messages = lib.messages(this, "en_us", "fr_fr");
-        SleepService sleep = new SleepService(this, messages, lib.getActivity(), lib.getVanish(),
+        sleep = new SleepService(this, messages, lib.getActivity(), lib.getVanish(),
                 getConfig().getInt("percentage", 50), getConfig().getInt("skip-speed", 100),
                 new HashSet<>(getConfig().getStringList("worlds")));
         getServer().getPluginManager().registerEvents(new SleepListener(this, sleep), this);
         sleep.start();
+    }
+
+    @Override
+    public void onDisable() {
+        if (sleep != null) {
+            sleep.stop();
+        }
     }
 }

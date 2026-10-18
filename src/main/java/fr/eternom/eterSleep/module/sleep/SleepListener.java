@@ -1,7 +1,6 @@
 package fr.eternom.eterSleep.module.sleep;
 
 import org.bukkit.Bukkit;
-import org.bukkit.GameRules;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -34,8 +33,6 @@ public class SleepListener implements Listener {
     /** Un monde chargé plus tard (multivers...) : la règle de Minecraft laisse aussi la main à EterSleep. */
     @EventHandler
     public void onWorldLoad(WorldLoadEvent event) {
-        if (sleep.manages(event.getWorld())) {
-            event.getWorld().setGameRule(GameRules.PLAYERS_SLEEPING_PERCENTAGE, 101);
-        }
+        sleep.takeOver(event.getWorld());
     }
 }

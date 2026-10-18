@@ -19,7 +19,9 @@ invisibles ou spectateurs ne bloquent plus la nuit. Document développeur, à te
   matin la pluie s'arrête, les joueurs couchés se lèvent et leur compteur de sommeil est remis à zéro (pas de phantoms).
   Le temps du monde avance vraiment (`setFullTime`) : le compteur de jours et les phases de lune suivent.
 - **Règle de Minecraft** : `playersSleepingPercentage` est mise à 101 dans les mondes gérés (au démarrage et à chaque monde
-  chargé ensuite) : c'est EterSleep qui décide, Minecraft ne passe plus la nuit de lui-même.
+  chargé ensuite) : c'est EterSleep qui décide, Minecraft ne passe plus la nuit de lui-même. Elle reprend sa valeur d'avant à
+  l'arrêt du serveur : plugin retiré, la nuit se passe de nouveau comme dans Minecraft.
+- Un même joueur n'est annoncé au lit qu'une fois toutes les 10 s (se lever et se recoucher ne remplit pas le chat).
 
 ## Configuration (`config.yml`)
 
