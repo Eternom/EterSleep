@@ -23,7 +23,7 @@ dependencies {
     compileOnly("io.papermc.paper:paper-api:26.2.build.+")
 
     // Socle commun : langue, activité des joueurs (AFK), joueurs invisibles (plugin EterLib installé sur le serveur)
-    compileOnly("com.github.Eternom:EterLib:1.18.0")
+    compileOnly("com.github.Eternom:EterLib:1.20.1")
 }
 
 java {
